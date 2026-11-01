@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shoply_app_dashboard/core/dependencies/main/main_dependency.dart';
+import 'package:shoply_app_dashboard/core/router/app_pages.dart';
+import 'package:shoply_app_dashboard/core/router/app_router.dart';
+import 'package:shoply_app_dashboard/core/utils/theme/app_theme.dart';
 
-void main() {
+void main() async {
+  await MainDependency.mainInitDependency();
+
   runApp(const MainApp());
 }
 
@@ -9,12 +15,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      onGenerateRoute: AppRouter.onGenerateRoute,
+      initialRoute: AppPages.splashScreen,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.themeLight,
     );
   }
 }
